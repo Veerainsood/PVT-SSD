@@ -7,24 +7,15 @@ DATA_CONFIG:
       DISABLE_AUG_LIST: ['placeholder']
       AUG_CONFIG_LIST:
         - NAME: gt_sampling
-          BACKEND:
-              NAME: HardDiskBackend
-              KWARGS: {
-                # 'path_mapping': {
-                #   '/mnt/petrelfs/yanghonghui': 's3://yanghonghui',
-                #   '/workspace/data': 's3://yanghonghui'
-                # },
-                # 'enable_mc': False
-              }
           USE_ROAD_PLANE: True
           DB_INFO_PATH:
               - kitti_dbinfos_train.pkl
           PREPARE: {
-              filter_by_min_points: ['Car:5', 'Pedestrian:5', 'Cyclist:5'],
+              filter_by_min_points: ['Car:5'],
               filter_by_difficulty: [-1],
           }
 
-          SAMPLE_GROUPS: ['Car:15','Pedestrian:10', 'Cyclist:10']
+          SAMPLE_GROUPS: ['Car:15']
           NUM_POINT_FEATURES: 4
           DATABASE_WITH_FAKELIDAR: False
           REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
@@ -75,8 +66,9 @@ MODEL:
         NAME: PVTSSDHead
         CLASS_AGNOSTIC: False
 
-        ANCHOR_HEIGHT: 0.0
-
+        ANCHOR_HEIGHT: 0
+        SCORE_THRESH: 0.05
+        
         VOTE_CONFIG:
             OFFSET_RANGE: [3.0, 3.0, 2.0]
             MLPS: [256]
@@ -176,11 +168,15 @@ MODEL:
             'vote_corner_weight': 1.0,
             'vote_code_weights': [1.0, 1.0, 1.0],
           }
+        NMS_CONFIG:
+          NMS_THRESH:      0.5    # only suppress if IoU ≥ 0.5
+          NMS_PRE_MAXSIZE: 10000  # keep more raw anchors before NMS
+          NMS_POST_MAXSIZE: 500
 
     POST_PROCESSING:
         RECALL_MODE: 'normal'
         RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
-        SCORE_THRESH: 0.3
+        SCORE_THRESH: 0.05
         OUTPUT_RAW_SCORE: False
 
         EVAL_METRIC: kitti
@@ -188,14 +184,14 @@ MODEL:
         NMS_CONFIG:
             MULTI_CLASSES_NMS: False
             NMS_TYPE: nms_gpu
-            NMS_THRESH: 0.01
+            NMS_THRESH: 0.7
             NMS_PRE_MAXSIZE: 4096
             NMS_POST_MAXSIZE: 500
 
 
 OPTIMIZATION:
-    BATCH_SIZE_PER_GPU: 4
-    NUM_EPOCHS: 80
+    BATCH_SIZE_PER_GPU: 14
+    NUM_EPOCHS: 30
 
     OPTIMIZER: adam_onecycle
     LR: 0.003
@@ -205,7 +201,7 @@ OPTIMIZATION:
     MOMS: [0.95, 0.85]
     PCT_START: 0.4
     DIV_FACTOR: 10
-    DECAY_STEP_LIST: [35, 45]
+    DECAY_STEP_LIST: [40, 60]
     LR_DECAY: 0.1
     LR_CLIP: 0.0000001
 

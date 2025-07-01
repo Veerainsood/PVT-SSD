@@ -15,17 +15,17 @@ conda install -y -c fvcore -c iopath -c conda-forge fvcore iopath
 conda install -y pytorch3d -c pytorch3d
 pip install numpy==1.19.5 protobuf==3.19.4 scikit-image==0.19.2 waymo-open-dataset-tf-2-2-0 nuscenes-devkit==1.0.5 einops==0.6.0 spconv-cu111 numba scipy pyyaml easydict fire tqdm shapely matplotlib opencv-python addict pyquaternion awscli open3d pandas future pybind11 tensorboardX tensorboard Cython
 pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.1+cu111.html
-git clone https://github.com/Nightmare-n/PVT-SSD
+
 cd PVT-SSD && python setup.py develop --user
 ```
-
+git clone https://github.com/Nightmare-n/PVT-SSD
 ## Data Preparation
 
 Please follow the [instruction](https://github.com/open-mmlab/OpenPCDet/blob/master/docs/GETTING_STARTED.md) of OpenPCDet to prepare the dataset. For the Waymo dataset, we use the [evaluation toolkits](https://drive.google.com/drive/folders/1aa1kI9hhzBoZkIBcr8RBO3Zhg_RkOAag?usp=sharing) to evaluate detection results.
 ```
 data
 │── waymo
-│   │── ImageSets/
+│   │── ImageSets/ Nuscenes, W
 │   │── raw_data
 │   │   │── segment-xxxxxxxx.tfrecord
 │   │   │── ...

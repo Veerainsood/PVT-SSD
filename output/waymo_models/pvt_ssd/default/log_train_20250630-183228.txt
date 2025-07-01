@@ -1,0 +1,522 @@
+2025-06-30 18:32:28,741   INFO  **********************Start logging**********************
+2025-06-30 18:32:28,742   INFO  CUDA_VISIBLE_DEVICES=0
+2025-06-30 18:32:28,742   INFO  cfg_file         cfgs/waymo_models/pvt_ssd.yaml
+2025-06-30 18:32:28,742   INFO  batch_size       1
+2025-06-30 18:32:28,742   INFO  epochs           30
+2025-06-30 18:32:28,742   INFO  workers          4
+2025-06-30 18:32:28,742   INFO  extra_tag        default
+2025-06-30 18:32:28,742   INFO  ckpt             None
+2025-06-30 18:32:28,742   INFO  pretrained_model None
+2025-06-30 18:32:28,742   INFO  launcher         none
+2025-06-30 18:32:28,743   INFO  tcp_port         18888
+2025-06-30 18:32:28,743   INFO  sync_bn          False
+2025-06-30 18:32:28,743   INFO  fix_random_seed  False
+2025-06-30 18:32:28,743   INFO  ckpt_save_interval 1
+2025-06-30 18:32:28,743   INFO  local_rank       0
+2025-06-30 18:32:28,743   INFO  max_ckpt_save_num 30
+2025-06-30 18:32:28,743   INFO  merge_all_iters_to_one_epoch False
+2025-06-30 18:32:28,743   INFO  set_cfgs         None
+2025-06-30 18:32:28,743   INFO  max_waiting_mins 1
+2025-06-30 18:32:28,743   INFO  start_epoch      0
+2025-06-30 18:32:28,744   INFO  num_epochs_to_eval 1
+2025-06-30 18:32:28,744   INFO  save_to_file     False
+2025-06-30 18:32:28,744   INFO  fuse_conv_bn     False
+2025-06-30 18:32:28,744   INFO  use_amp          False
+2025-06-30 18:32:28,744   INFO  cfg.ROOT_DIR: /home/veerain/Documents/PVT-SSD
+2025-06-30 18:32:28,744   INFO  cfg.LOCAL_RANK: 0
+2025-06-30 18:32:28,744   INFO  cfg.CLASS_NAMES: ['Vehicle', 'Pedestrian', 'Cyclist']
+2025-06-30 18:32:28,744   INFO  
+cfg.DATA_CONFIG = edict()
+2025-06-30 18:32:28,744   INFO  cfg.DATA_CONFIG.DATASET: WaymoDataset
+2025-06-30 18:32:28,744   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/waymo
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.PROCESSED_DATA_TAG: waymo_processed_data
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.NUM_SWEEPS: 1
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.USE_TIME_LAG: False
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-75.2, -75.2, -2, 75.2, 75.2, 4]
+2025-06-30 18:32:28,745   INFO  
+cfg.DATA_CONFIG.DATA_SPLIT = edict()
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2025-06-30 18:32:28,745   INFO  
+cfg.DATA_CONFIG.SAMPLED_INTERVAL = edict()
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.SAMPLED_INTERVAL.train: 1
+2025-06-30 18:32:28,745   INFO  cfg.DATA_CONFIG.SAMPLED_INTERVAL.test: 1
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.FILTER_EMPTY_BOXES_FOR_TRAIN: True
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.DISABLE_NLZ_FLAG_ON_POINTS: True
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.USE_SHARED_MEMORY: False
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.SHARED_MEMORY_FILE_LIMIT: 35000
+2025-06-30 18:32:28,746   INFO  
+cfg.DATA_CONFIG.DATA_AUGMENTOR = edict()
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': False, 'DB_INFO_PATH': ['waymo_processed_data_waymo_dbinfos_train_sampled_1.pkl'], 'USE_SHARED_MEMORY': False, 'DB_DATA_PATH': ['waymo_processed_data_gt_database_train_sampled_1_global.npy'], 'PREPARE': {'filter_by_min_points': ['Vehicle:5', 'Pedestrian:5', 'Cyclist:5'], 'filter_by_difficulty': [-1]}, 'SAMPLE_GROUPS': ['Vehicle:15', 'Pedestrian:10', 'Cyclist:10'], 'NUM_POINT_FEATURES': 5, 'REMOVE_POINTS': True, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': True}, {'NAME': 'random_world_flip', 'PROBABILITY': 0.5, 'ALONG_AXIS_LIST': ['y']}, {'NAME': 'random_world_rotation', 'PROBABILITY': 0.7, 'WORLD_ROT_ANGLE': [-3.14159265, 3.14159265]}, {'NAME': 'random_world_scaling', 'PROBABILITY': 0.5, 'WORLD_SCALE_RANGE': [0.9, 1.1]}, {'NAME': 'random_world_translation', 'PROBABILITY': 0.5, 'NOISE_TRANSLATE_STD': [0.5, 0.5, 0.5]}, {'NAME': 'random_world_drop', 'PROBABILITY': 0.5, 'DROP_RATIO': 0.1}]
+2025-06-30 18:32:28,746   INFO  
+cfg.DATA_CONFIG.POINT_FEATURE_ENCODING = edict()
+2025-06-30 18:32:28,746   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2025-06-30 18:32:28,747   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity', 'elongation']
+2025-06-30 18:32:28,747   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity', 'elongation']
+2025-06-30 18:32:28,747   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': True}}, {'NAME': 'calculate_grid_size', 'VOXEL_SIZE': [0.1, 0.1, 0.15]}]
+2025-06-30 18:32:28,747   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/waymo_dataset.yaml
+2025-06-30 18:32:28,747   INFO  
+cfg.MODEL = edict()
+2025-06-30 18:32:28,747   INFO  cfg.MODEL.NAME: PVTSSD
+2025-06-30 18:32:28,747   INFO  
+cfg.MODEL.VFE = edict()
+2025-06-30 18:32:28,747   INFO  cfg.MODEL.VFE.NAME: DynVFE
+2025-06-30 18:32:28,747   INFO  cfg.MODEL.VFE.TYPE: random
+2025-06-30 18:32:28,747   INFO  
+cfg.MODEL.BACKBONE_3D = edict()
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.BACKBONE_3D.NAME: MiniUNet
+2025-06-30 18:32:28,748   INFO  
+cfg.MODEL.MAP_TO_BEV = edict()
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.MAP_TO_BEV.NAME: HeightCompression
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.MAP_TO_BEV.NUM_BEV_FEATURES: 64
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.MAP_TO_BEV.TO_SPARSE: True
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.MAP_TO_BEV.TYPE: max
+2025-06-30 18:32:28,748   INFO  
+cfg.MODEL.DENSE_HEAD = edict()
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.DENSE_HEAD.NAME: PVTSSDHead
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2025-06-30 18:32:28,748   INFO  cfg.MODEL.DENSE_HEAD.ANCHOR_HEIGHT: 0.0
+2025-06-30 18:32:28,749   INFO  
+cfg.MODEL.DENSE_HEAD.VOTE_CONFIG = edict()
+2025-06-30 18:32:28,749   INFO  cfg.MODEL.DENSE_HEAD.VOTE_CONFIG.OFFSET_RANGE: [8.0, 8.0, 4.0]
+2025-06-30 18:32:28,749   INFO  cfg.MODEL.DENSE_HEAD.VOTE_CONFIG.MLPS: [256]
+2025-06-30 18:32:28,749   INFO  
+cfg.MODEL.DENSE_HEAD.FPS_CONFIG = edict()
+2025-06-30 18:32:28,749   INFO  
+cfg.MODEL.DENSE_HEAD.FPS_CONFIG.TYPE = edict()
+2025-06-30 18:32:28,749   INFO  cfg.MODEL.DENSE_HEAD.FPS_CONFIG.TYPE.train: ['s-fps']
+2025-06-30 18:32:28,749   INFO  cfg.MODEL.DENSE_HEAD.FPS_CONFIG.TYPE.test: ['s-fps']
+2025-06-30 18:32:28,749   INFO  
+cfg.MODEL.DENSE_HEAD.FPS_CONFIG.MAX_NPOINTS = edict()
+2025-06-30 18:32:28,749   INFO  cfg.MODEL.DENSE_HEAD.FPS_CONFIG.MAX_NPOINTS.train: 4096
+2025-06-30 18:32:28,749   INFO  cfg.MODEL.DENSE_HEAD.FPS_CONFIG.MAX_NPOINTS.test: 4096
+2025-06-30 18:32:28,750   INFO  
+cfg.MODEL.DENSE_HEAD.FPS_CONFIG.NPOINTS = edict()
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.FPS_CONFIG.NPOINTS.train: [512]
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.FPS_CONFIG.NPOINTS.test: [512]
+2025-06-30 18:32:28,750   INFO  
+cfg.MODEL.DENSE_HEAD.RV_CONFIG = edict()
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.DATASET: WAYMO
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.GRID_SIZE: [64, 2650]
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.STRIDE: [2, 2]
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.AZI_RANGE: [-1.0, 1.0]
+2025-06-30 18:32:28,750   INFO  
+cfg.MODEL.DENSE_HEAD.RV_CONFIG.NPOINTS_PER_PIXEL = edict()
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.NPOINTS_PER_PIXEL.train: 16
+2025-06-30 18:32:28,750   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.NPOINTS_PER_PIXEL.test: 4
+2025-06-30 18:32:28,751   INFO  cfg.MODEL.DENSE_HEAD.RV_CONFIG.VERSION: 2
+2025-06-30 18:32:28,751   INFO  
+cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG = edict()
+2025-06-30 18:32:28,751   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.FEATURES_SOURCE: ['x_conv3', 'x_conv4', 'x_bev']
+2025-06-30 18:32:28,751   INFO  
+cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS = edict()
+2025-06-30 18:32:28,751   INFO  
+cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv3 = edict()
+2025-06-30 18:32:28,751   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv3.QUERY_RANGE: [3, 3, 3]
+2025-06-30 18:32:28,751   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv3.RADIUS: 0.8
+2025-06-30 18:32:28,751   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv3.NSAMPLE: 8
+2025-06-30 18:32:28,751   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv3.DIM: 64
+2025-06-30 18:32:28,751   INFO  
+cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv4 = edict()
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv4.QUERY_RANGE: [3, 3, 3]
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv4.RADIUS: 1.2
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv4.NSAMPLE: 8
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_conv4.DIM: 128
+2025-06-30 18:32:28,752   INFO  
+cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_bev = edict()
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_bev.QUERY_RANGE: [0, 4, 4]
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_bev.RADIUS: 1.6
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_bev.NSAMPLE: 8
+2025-06-30 18:32:28,752   INFO  cfg.MODEL.DENSE_HEAD.POINT_KNN_CONFIG.POOL_LAYERS.x_bev.DIM: 128
+2025-06-30 18:32:28,752   INFO  
+cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG = edict()
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG.MAX_NSAMPLE: 1024
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG.NSAMPLE: 128
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG.RADIUS: 3.6
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG.DILATION: [1, 1]
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG.QUERY_RANGE: [10, 32]
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.VOTE_QUERY_CONFIG.QUERY_MOD: rv_rand
+2025-06-30 18:32:28,753   INFO  
+cfg.MODEL.DENSE_HEAD.PV_TRANS_CONFIG = edict()
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.PV_TRANS_CONFIG.NHEAD: 4
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.PV_TRANS_CONFIG.NUM_DEC: 1
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.PV_TRANS_CONFIG.DP_RATIO: 0.1
+2025-06-30 18:32:28,753   INFO  cfg.MODEL.DENSE_HEAD.PV_TRANS_CONFIG.FNN_DIM: 512
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.SHARED_FC: [512, 256]
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.CLS_FC: [128]
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.REG_FC: [128]
+2025-06-30 18:32:28,754   INFO  
+cfg.MODEL.DENSE_HEAD.TARGET_CONFIG = edict()
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.MIN_RADIUS: 2
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.GT_EXTRA_WIDTH: [0.2, 0.2, 10.0]
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.GT_CENTRAL_RADIUS: 15.0
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.SEED_CLS: center
+2025-06-30 18:32:28,754   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.BOX_CODER: PointBinResidualCoder
+2025-06-30 18:32:28,755   INFO  
+cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG = edict()
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG.angle_bin_num: 12
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG.use_mean_size: False
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.TARGET_CONFIG.BOX_CODER_CONFIG.mean_size: [[4.7, 2.1, 1.7], [0.91, 0.86, 1.73], [1.78, 0.84, 1.78]]
+2025-06-30 18:32:28,755   INFO  
+cfg.MODEL.DENSE_HEAD.LOSS_CONFIG = edict()
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.PREDICT_BOXES: True
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.CLS_POS_NORM: False
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.AUX_CLS_POS_NORM: False
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.CLS_LOSS: WeightedBinaryCrossEntropyLossWithCenterness
+2025-06-30 18:32:28,755   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.AUX_CLS_LOSS: WeightedBinaryCrossEntropyLoss
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.REG_LOSS: WeightedSmoothL1Loss
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.CORNER_LOSS_TYPE: 1
+2025-06-30 18:32:28,756   INFO  
+cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS = edict()
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.vote_cls_weight: 1.0
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.vote_reg_weight: 1.0
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.seed_reg_weight_list: [1.0]
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.seed_cls_weight_list: [1.0]
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.vote_corner_weight: 1.0
+2025-06-30 18:32:28,756   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.vote_code_weights: [1.0, 1.0, 1.0]
+2025-06-30 18:32:28,756   INFO  
+cfg.MODEL.POST_PROCESSING = edict()
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: waymo_custom
+2025-06-30 18:32:28,757   INFO  
+cfg.MODEL.POST_PROCESSING.NMS_CONFIG = edict()
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: multi_class_nms
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: [0.7, 0.55, 0.55]
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: [2048, 1024, 1024]
+2025-06-30 18:32:28,757   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: [200, 150, 150]
+2025-06-30 18:32:28,758   INFO  
+cfg.OPTIMIZATION = edict()
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 1
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 64
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.LR: 0.003
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2025-06-30 18:32:28,758   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2025-06-30 18:32:28,759   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2025-06-30 18:32:28,759   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2025-06-30 18:32:28,759   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2025-06-30 18:32:28,759   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2025-06-30 18:32:28,759   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2025-06-30 18:32:28,759   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2025-06-30 18:32:28,759   INFO  cfg.TAG: pvt_ssd
+2025-06-30 18:32:28,759   INFO  cfg.EXP_GROUP_PATH: waymo_models
+2025-06-30 18:33:07,131   INFO  Database filter by min points Vehicle: 1087317 => 1019919
+2025-06-30 18:33:07,419   INFO  Database filter by min points Pedestrian: 1015643 => 943716
+2025-06-30 18:33:07,448   INFO  Database filter by min points Cyclist: 49504 => 47529
+2025-06-30 18:33:11,034   INFO  Database filter by difficulty Vehicle: 1019919 => 1019919
+2025-06-30 18:33:14,349   INFO  Database filter by difficulty Pedestrian: 943716 => 943716
+2025-06-30 18:33:14,516   INFO  Database filter by difficulty Cyclist: 47529 => 47529
+2025-06-30 18:33:14,812   INFO  Loading Waymo dataset
+2025-06-30 18:33:24,177   INFO  Total skipped info 0
+2025-06-30 18:33:24,177   INFO  Total samples for Waymo dataset: 158081
+2025-06-30 18:33:27,138   INFO  ==> Loading parameters from checkpoint /home/veerain/Documents/PVT-SSD/output/waymo_models/pvt_ssd/default/ckpt/checkpoint_epoch_22.pth to GPU
+2025-06-30 18:33:27,412   INFO  ==> Loading optimizer parameters from checkpoint /home/veerain/Documents/PVT-SSD/output/waymo_models/pvt_ssd/default/ckpt/checkpoint_epoch_22.pth to GPU
+2025-06-30 18:33:27,418   INFO  ==> Done
+2025-06-30 18:33:27,422   INFO  PVTSSD(
+  (vfe): DynVFE()
+  (backbone_3d): MiniUNet(
+    (conv_input): SparseSequential(
+      (0): SubMConv3d(5, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (conv1): SparseSequential(
+      (0): SparseBasicBlock(
+        (conv1): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv2): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(16, 32, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(32, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv3): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(32, 64, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv4): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(64, 128, kernel_size=[3, 3, 3], stride=[2, 2, 2], padding=[0, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (1): SparseBasicBlock(
+        (conv1): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+      (2): SparseBasicBlock(
+        (conv1): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (relu): ReLU()
+        (conv2): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], algo=ConvAlgo.MaskImplicitGemm)
+        (bn2): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+    (conv5): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv3d(128, 128, kernel_size=[3, 1, 1], stride=[2, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+    (middle_conv): SparseMiddleLayer(
+      (conv1): SparseSequential(
+        (0): SparseSequential(
+          (0): SparseConv2d(256, 128, kernel_size=[3, 3], stride=[1, 1], padding=[1, 1], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): SparseSequential(
+          (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (2): SparseSequential(
+          (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (3): SparseSequential(
+          (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+      )
+      (conv2): SparseSequential(
+        (0): SparseSequential(
+          (0): SparseConv2d(128, 128, kernel_size=[3, 3], stride=[2, 2], padding=[1, 1], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (1): SparseSequential(
+          (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (2): SparseSequential(
+          (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+        (3): SparseSequential(
+          (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+          (2): ReLU()
+        )
+      )
+      (inv_conv1): SparseSequential(
+        (0): SubMConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (inv_conv2): SparseSequential(
+        (0): SparseInverseConv2d(128, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+      (conv_out): SparseSequential(
+        (0): SubMConv2d(256, 128, kernel_size=[3, 3], stride=[1, 1], padding=[0, 0], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+    (conv_up_t5): SparseSequential(
+      (0): SubMConv3d(128, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (inv_conv5): SparseSequential(
+      (0): SparseInverseConv3d(128, 128, kernel_size=[3, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (conv_up_m5): SparseSequential(
+      (0): SubMConv3d(256, 128, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (conv_up_t4): SparseSequential(
+      (0): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (inv_conv4): SparseSequential(
+      (0): SparseInverseConv3d(128, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (conv_up_m4): SparseSequential(
+      (0): SubMConv3d(128, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+  )
+  (map_to_bev_module): HeightCompression()
+  (pfe): None
+  (backbone_2d): None
+  (dense_head): PVTSSDHead(
+    (cls_loss_func): WeightedBinaryCrossEntropyLoss()
+    (reg_loss_func): WeightedSmoothL1Loss()
+    (aux_cls_loss_func): WeightedBinaryCrossEntropyLoss()
+    (seed_cls_loss_func): FocalLossCenterNet()
+    (seed_reg_loss_func): WeightedSmoothL1Loss()
+    (dense_conv2d): Sequential(
+      (0): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (1): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (4): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (5): ReLU()
+      (6): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (7): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (8): ReLU()
+      (9): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (10): BatchNorm2d(128, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      (11): ReLU()
+    )
+    (exp): SparseSequential(
+      (0): SparseSequential(
+        (0): SparseConv2d(64, 64, kernel_size=[3, 3], stride=[1, 1], padding=[1, 1], dilation=[1, 1], output_padding=[0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        (1): BatchNorm1d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU()
+      )
+    )
+    (vote_layer): VoteLayer(
+      (offset_conv): Sequential(
+        (0): Linear(in_features=64, out_features=256, bias=False)
+        (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+        (3): Linear(in_features=256, out_features=3, bias=True)
+      )
+      (cls_conv): Sequential(
+        (0): Linear(in_features=64, out_features=256, bias=False)
+        (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+        (3): Linear(in_features=256, out_features=3, bias=True)
+      )
+    )
+    (vote_reduce_conv): Sequential(
+      (0): Linear(in_features=192, out_features=128, bias=False)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (point_feat_reduction): Sequential(
+      (0): Linear(in_features=320, out_features=128, bias=False)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+    )
+    (pv_transformer): Transformer(
+      (decoder): TransformerDecoder(
+        (layers): ModuleList(
+          (0): TransformerDecoderLayer(
+            (cross_attn): MultiheadAttention(
+              (out_proj): Linear(in_features=128, out_features=128, bias=True)
+              (rela_q): Sequential(
+                (0): Linear(in_features=3, out_features=64, bias=True)
+                (1): ReLU()
+                (2): Linear(in_features=64, out_features=128, bias=True)
+              )
+              (rela_k): Sequential(
+                (0): Linear(in_features=3, out_features=64, bias=True)
+                (1): ReLU()
+                (2): Linear(in_features=64, out_features=128, bias=True)
+              )
+              (rela_v): Sequential(
+                (0): Linear(in_features=3, out_features=64, bias=True)
+                (1): ReLU()
+                (2): Linear(in_features=64, out_features=128, bias=True)
+              )
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (attn_drop): Dropout(p=0.1, inplace=False)
+            )
+            (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+            (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+            (dropout2): Dropout(p=0.1, inplace=False)
+            (dropout3): Dropout(p=0.1, inplace=False)
+            (linear1): Linear(in_features=128, out_features=512, bias=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+            (linear2): Linear(in_features=512, out_features=128, bias=True)
+            (activation): ReLU()
+          )
+        )
+      )
+    )
+    (shared_conv): Sequential(
+      (0): Linear(in_features=128, out_features=512, bias=False)
+      (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Linear(in_features=512, out_features=256, bias=False)
+      (4): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU()
+    )
+    (cls_conv): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=False)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Linear(in_features=128, out_features=3, bias=True)
+    )
+    (box_conv): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=False)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Linear(in_features=128, out_features=30, bias=True)
+    )
+  )
+  (point_head): None
+)
+2025-06-30 18:33:27,431   INFO  **********************Start training waymo_models/pvt_ssd(default)**********************

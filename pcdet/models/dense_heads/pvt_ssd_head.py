@@ -622,6 +622,7 @@ class PVTSSDHead(PointHeadTemplate):
         return bev_feats
 
     def forward(self, batch_dict):
+        from spconv.pytorch import SparseConvTensor
         """
         Args:
             batch_dict:
@@ -636,7 +637,18 @@ class PVTSSDHead(PointHeadTemplate):
                 point_cls_scores: (N1 + N2 + N3 + ..., 1)
                 point_part_offset: (N1 + N2 + N3 + ..., 3)
         """
-        batch_dict['spatial_features'] = self.exp(batch_dict['spatial_features'])
+        sf = batch_dict['spatial_features']   # the original SparseConvTensor
+        
+        # to avoid passing empty vectors into the model.... it panics...
+        if sf.features.shape[0] == 0:
+            batch_dict['batch_cls_preds']   = torch.empty((0, 1), device=sf.features.device)
+            batch_dict['batch_box_preds']   = torch.empty((0, 7), device=sf.features.device)  # adjust shape to your box dim
+            batch_dict['batch_index']       = torch.empty((0,),   device=sf.features.device, dtype=torch.long)
+            batch_dict['cls_preds_normalized'] = False
+            return batch_dict
+        else:
+            batch_dict['spatial_features'] = self.exp(sf)
+
         spatial_features = batch_dict['spatial_features']
         voxel_coords = spatial_features.indices
         voxel_features = spatial_features.features
