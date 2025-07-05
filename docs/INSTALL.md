@@ -1,7 +1,7 @@
 # Installation
 
 ### Requirements
-All the codes are tested in the following environment:
+All the codes are tested in the following environment (working as of  Jul 2025):
 * Linux (tested on Ubuntu 14.04/16.04/18.04/20.04/21.04)
 * Python 3.10.18 
 * add dead snakes repo so that your torch does not crash!!
@@ -20,13 +20,12 @@ All the codes are tested in the following environment:
 
 a. Clone this repository.
 ```shell
-git clone https://github.com/open-mmlab/OpenPCDet.git
+git clone https://github.com/Nightmare-n/PVT-SSD.git
 ```
 
 * No need of separatly doing anything I have taken care of spconv and other things...
 
-b.  
-do 
+b. Do the following:
 ```bash
 python3.10 -m venv pvt
 source pvt/bin/activate
@@ -68,8 +67,10 @@ inside it comment out stuff like:
         # major/minor attributes are only available in setuptools>=49.4.0
         if getattr(cuda_ver, "major", None) is None:
             # raise ValueError("setuptools>=49.4.0 is required")
+            pass
         if cuda_ver.major != torch_cuda_version.major:
             # raise RuntimeError(CUDA_MISMATCH_MESSAGE.format(cuda_str_version, torch.version.cuda))
+            pass
         # warnings.warn(CUDA_MISMATCH_WARN.format(cuda_str_version, torch.version.cuda))
 ```
 c. In 
@@ -140,6 +141,7 @@ class DevelopDeprecationWarning(SetuptoolsDeprecationWarning):
 ```
 
 d. Install this `pcdet` library and its dependent libraries by running the following command:
+( please return to your original folder after doing above steps and then run it )
 ```shell
 pip install -e . --no-build-isolation
 ```
