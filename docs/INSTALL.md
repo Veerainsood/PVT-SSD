@@ -18,14 +18,9 @@ All the codes are tested in the following environment (working as of  Jul 2025):
 
 ### Install 
 
-a. Clone this repository.
-```shell
-git clone https://github.com/Nightmare-n/PVT-SSD.git
-```
-
 * No need of separatly doing anything I have taken care of spconv and other things...
 
-b. Do the following:
+a. Do the following:
 ```bash
 python3.10 -m venv pvt
 source pvt/bin/activate
@@ -73,7 +68,7 @@ inside it comment out stuff like:
             pass
         # warnings.warn(CUDA_MISMATCH_WARN.format(cuda_str_version, torch.version.cuda))
 ```
-c. In 
+b. In 
 ```shell
 ${YOUR_VENV_FOLDER}$/lib/python3.10/site-packages/setuptools/command
 or 
@@ -140,10 +135,19 @@ class DevelopDeprecationWarning(SetuptoolsDeprecationWarning):
     _DUE_DATE = 2025, 10, 31
 ```
 
-d. Install this `pcdet` library and its dependent libraries by running the following command:
+c. Install this `pcdet` library and its dependent libraries by running the following command:
 ( please return to your original folder after doing above steps and then run it )
 ```shell
 pip install -e . --no-build-isolation
+```
+d. Since Majority running code exists in tools/ , you may get the pcdet not found error , that comes from subdirs not being able to find specific python env code required for running the scripts <br>
+Simply export the enviornment variable so that it becomes accessible...
+```bash
+export PYTHONPATH={location_of_your_PVT_SSD_folder}/:$PYTHONPATH
+in my case it was
+~/Documents/PVT-SSD
+so the command becomes
+export PYTHONPATH=~/Documents/PVT-SSD/:$PYTHONPATH
 ```
 
 e. Enjoy!! (Remember to undo changes after you are happy , I mostly dont undo things since I want my env not to be upgraded since it creates conflicts... so you can either leave the commented out portions as it is or just uncomment them back. But if you uncomment `_check_cuda_version` then you wont be able to run...but for `develop.py` after installing `pcet` you are good to uncomment it out..)
