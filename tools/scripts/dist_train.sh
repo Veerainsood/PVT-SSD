@@ -9,7 +9,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # single‐GPU training
 python train.py \
   --cfg_file cfgs/${CFG_NAME}.yaml \
-  --batch_size 10 \
+  --batch_size 8 \
   --epochs 30 \
   --workers 16 \
   --extra_tag ${TAG_NAME} \

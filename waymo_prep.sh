@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # 2. Activate your PCDet virtualenv
-source ~/venvs/pcdet/bin/activate
+source pvt/bin/activate
 
 # 3. Copy Waymo TFRecords
 gsutil -m cp -r \
