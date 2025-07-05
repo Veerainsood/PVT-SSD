@@ -23,18 +23,9 @@ a. Clone this repository.
 git clone https://github.com/open-mmlab/OpenPCDet.git
 ```
 
-b. Install the dependent libraries as follows:
-
-[comment]: <> (* Install the dependent python libraries: )
-
-[comment]: <> (```)
-
-[comment]: <> (pip install -r requirements.txt )
-
-[comment]: <> (```)
-
 * No need of separatly doing anything I have taken care of spconv and other things...
-  
+
+b.  
 do 
 ```bash
 python3.10 -m venv pvt
