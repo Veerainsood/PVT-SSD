@@ -1,5 +1,4 @@
 # Installation
-First of all run this in venv like a good girl/boy. I created mine in ~/venv folder you can create yours anywhere you want!!
 
 ### Requirements
 All the codes are tested in the following environment:
