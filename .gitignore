@@ -12,5 +12,5 @@ venv/
 *.bin
 version.py
 pvt/
-output/kitty_models/pvt_ssd/singleGPU/
+output/
 .vscode
