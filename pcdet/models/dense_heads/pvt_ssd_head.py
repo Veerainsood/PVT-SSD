@@ -14,7 +14,7 @@ from ...ops.center_ops import center_ops_cuda
 from ..backbones_3d.spconv_backbone import post_act_block
 from ...utils.spconv_utils import spconv
 from functools import partial
-
+from spconv.pytorch import SparseConvTensor
 
 class VoteLayer(nn.Module):
     def __init__(self, offset_range, input_channels, mlps, num_class=1):
@@ -227,6 +227,19 @@ class PVTSSDHead(PointHeadTemplate):
 
         """ Aux loss """
         spatial_features = input_dict['spatial_features']
+        
+        sorted_idx = torch.argsort(spatial_features.indices[:, 0])
+        new_idx = spatial_features.indices[sorted_idx]
+        new_features = spatial_features.features[sorted_idx]
+        new = SparseConvTensor(
+            new_features,
+            new_idx,
+            spatial_features.spatial_shape,   # same spatial dims
+            spatial_features.batch_size       # same batch size
+        )
+        input_dict['spatial_features'] = new
+        spatial_features = new
+
         spatial_features_stride = input_dict['spatial_features_stride']
         feature_map_size = spatial_features.spatial_shape
         feature_map_stride = spatial_features_stride
@@ -467,6 +480,17 @@ class PVTSSDHead(PointHeadTemplate):
         return loss_corner, tb_dict
 
     def voxel_knn_query_wrapper(self, points, point_coords, sp_tensor, stride, dim, query_range, radius, nsample, return_xyz=False):
+        sorted_idx = torch.argsort(sp_tensor.indices[:, 0])
+        new_indices = sp_tensor.indices[sorted_idx]
+        new_features = sp_tensor.features[sorted_idx]
+        new = SparseConvTensor(
+            new_features,
+            new_indices,
+            sp_tensor.spatial_shape,   # same spatial dims
+            sp_tensor.batch_size       # same batch size
+        )
+        sp_tensor = new
+
         coords = sp_tensor.indices
         
         voxel_xyz = common_utils.get_voxel_centers(
@@ -622,7 +646,7 @@ class PVTSSDHead(PointHeadTemplate):
         return bev_feats
 
     def forward(self, batch_dict):
-        from spconv.pytorch import SparseConvTensor
+
         """
         Args:
             batch_dict:
@@ -650,6 +674,17 @@ class PVTSSDHead(PointHeadTemplate):
             batch_dict['spatial_features'] = self.exp(sf)
 
         spatial_features = batch_dict['spatial_features']
+        sorted_idx = torch.argsort(spatial_features.indices[:, 0])
+        new_indices = spatial_features.indices[sorted_idx]
+        new_features = spatial_features.features[sorted_idx]
+        new = SparseConvTensor(
+            new_features,
+            new_indices,
+            spatial_features.spatial_shape,   # same spatial dims
+            spatial_features.batch_size       # same batch size
+        )
+        batch_dict['spatial_features'] = new
+        spatial_features = new
         voxel_coords = spatial_features.indices
         voxel_features = spatial_features.features
         voxel_stride = batch_dict['spatial_features_stride']

@@ -110,7 +110,7 @@ def train_model(model, optimizer, train_loader, model_func, lr_scheduler, optim_
                 lr_warmup_scheduler=None, ckpt_save_interval=1, max_ckpt_save_num=50,
                 merge_all_iters_to_one_epoch=False, use_amp=False):
     accumulated_iter = 0
-    with tqdm.trange(0, 30, desc='epochs', dynamic_ncols=True, leave=(rank == 0)) as tbar:
+    with tqdm.trange(0, total_epochs, desc='epochs', dynamic_ncols=True, leave=(rank == 0)) as tbar:
         total_it_each_epoch = len(train_loader)
         
         if merge_all_iters_to_one_epoch:
